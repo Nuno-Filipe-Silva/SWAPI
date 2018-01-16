@@ -23,6 +23,7 @@ import dagger.android.AndroidInjectionModule;
  *     <li>{@link AppModule}: provides application scope instances.</li>
  *     <li>{@link ActivityModule}: provides {@link android.app.Activity} related instances.</li>
  * </ul>
+ * </p>
  * @author Vincent Ganneau
  */
 @Singleton

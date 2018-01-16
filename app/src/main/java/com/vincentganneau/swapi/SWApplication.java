@@ -15,6 +15,7 @@ import dagger.android.HasActivityInjector;
  * The Star Wars {@link Application}.
  * <p>
  * Builds the graph of dependencies using {@link AppComponent}.
+ * </p>
  * @author Vincent Ganneau
  */
 public class SWApplication extends Application implements HasActivityInjector {
