@@ -60,4 +60,9 @@ public class Planet {
         final Planet planet = (Planet) object;
         return Objects.equals(mName, planet.getName());
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mName);
+    }
 }
