@@ -12,7 +12,7 @@ import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
 /**
- * The eCOA {@link Application}.
+ * The Star Wars {@link Application}.
  * <p>
  * Builds the graph of dependencies using {@link AppComponent}.
  * @author Vincent Ganneau
