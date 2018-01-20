@@ -21,24 +21,22 @@ public class PlanetTest {
      */
     @Test
     public void testEquals() {
-        final Planet one = new Planet();
-        one.setName("Mercury");
+        final Planet one = new Planet("Mercury");
 
-        // Assert true when comparing to same object
+        // Assert equality when comparing to same object
         assertTrue(one.equals(one));
 
-        // Assert false when comparing to null object
+        // Assert inequality when comparing to null object
         assertFalse(one.equals(null));
 
-        // Assert false when comparing to an object of different class
+        // Assert inequality when comparing to an object of different class
         assertFalse(one.equals(""));
 
-        // Assert true when all properties match
-        final Planet two = new Planet();
-        two.setName(one.getName());
+        // Assert equality when all properties match
+        final Planet two = new Planet(one.getName());
         assertTrue(one.equals(two));
 
-        // Assert false when name does not match
+        // Assert inequality when name does not match
         two.setName("Venus");
         assertFalse(one.equals(two));
     }
@@ -48,15 +46,13 @@ public class PlanetTest {
      */
     @Test
     public void testHashCode() {
-        final Planet one = new Planet();
-        one.setName("Mercury");
+        final Planet one = new Planet("Mercury");
 
         // Assert equality when comparing to same object
         assertEquals(one.hashCode(), one.hashCode());
 
         // Assert equality when all properties match
-        final Planet two = new Planet();
-        two.setName(one.getName());
+        final Planet two = new Planet(one.getName());
         assertEquals(one.hashCode(), two.hashCode());
 
         // Assert inequality when name does not match

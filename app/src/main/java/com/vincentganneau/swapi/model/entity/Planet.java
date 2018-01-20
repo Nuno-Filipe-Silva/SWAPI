@@ -3,6 +3,7 @@ package com.vincentganneau.swapi.model.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import java.util.Objects;
 
@@ -13,7 +14,7 @@ import java.util.Objects;
  * </p>
  * @author Vincent Ganneau
  */
-@Entity
+@Entity(tableName = Planet.TABLE_NAME)
 public class Planet {
 
     // Contract
@@ -27,9 +28,24 @@ public class Planet {
     public static final String COLUMN_NAME = "name";
 
     // Properties
+    @NonNull
     @PrimaryKey
     @ColumnInfo(name = COLUMN_NAME)
     private String mName;
+
+    // Constructors
+    /**
+     * Constructs a new instance of {@link Planet}.
+     */
+    public Planet() { }
+
+    /**
+     * Constructs a new instance of {@link Planet} with the given name.
+     * @param name the name for the {@link Planet}.
+     */
+    public Planet(String name) {
+        setName(name);
+    }
 
     // Setters
     /**
