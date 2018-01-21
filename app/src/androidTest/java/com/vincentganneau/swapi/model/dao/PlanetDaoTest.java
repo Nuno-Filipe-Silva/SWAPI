@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -42,11 +43,10 @@ public class PlanetDaoTest {
     public InstantTaskExecutorRule mInstantTaskExecutorRule = new InstantTaskExecutorRule();
 
     // Observer
-    @Mock
-    private Observer<List<Planet>> mObserver;
+    @Mock private Observer<List<Planet>> mObserver;
 
     /**
-     * Builds the database by allowing main thread queries for the purpose of testing.
+     * Initializes mock objects and builds the database by allowing main thread queries for the purpose of testing.
      */
     @Before
     public void buildDatabase() {
@@ -70,11 +70,12 @@ public class PlanetDaoTest {
         // When
         mDatabase.planetDao().insertPlanet(venus);
         mDatabase.planetDao().insertPlanet(mercury);
+        mDatabase.planetDao().insertPlanets(planets);
 
         // Then
-        verify(mObserver).onChanged(Collections.<Planet>emptyList());
-        verify(mObserver).onChanged(Collections.singletonList(venus));
-        verify(mObserver).onChanged(planets);
+        verify(mObserver, times(1)).onChanged(Collections.emptyList());
+        verify(mObserver, times(1)).onChanged(Collections.singletonList(venus));
+        verify(mObserver, times(2)).onChanged(planets);
     }
 
     /**

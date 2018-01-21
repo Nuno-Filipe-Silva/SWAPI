@@ -26,6 +26,13 @@ public interface PlanetDao {
     void insertPlanet(Planet planet);
 
     /**
+     * Inserts a {@link List} of {@link Planet} objects in the database.
+     * @param planets the {@link List} of {@link Planet} objects to be inserted.
+     */
+    @Insert(onConflict = REPLACE)
+    void insertPlanets(List<Planet> planets);
+
+    /**
      * Loads all {@link Planet} objects from the database.
      * @return the {@link List} of {@link Planet} objects as an observable {@link LiveData}
      */
