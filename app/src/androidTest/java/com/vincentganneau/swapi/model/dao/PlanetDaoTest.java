@@ -32,15 +32,13 @@ import static org.mockito.Mockito.verify;
 public class PlanetDaoTest {
 
     /**
-     * The test database.
-     */
-    private SWDatabase mDatabase;
-
-    /**
-     * The rule that makes sure {@link Room} executes all the database operations instantly.
+     * The rule that forces Architecture Components to instantly execute any background operation on the calling thread.
      */
     @Rule
     public InstantTaskExecutorRule mInstantTaskExecutorRule = new InstantTaskExecutorRule();
+
+    // Database
+    private SWDatabase mDatabase;
 
     // Observer
     @Mock private Observer<List<Planet>> mObserver;

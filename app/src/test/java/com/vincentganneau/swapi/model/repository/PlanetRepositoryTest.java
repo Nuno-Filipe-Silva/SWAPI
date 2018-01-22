@@ -3,7 +3,6 @@ package com.vincentganneau.swapi.model.repository;
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
-import android.arch.persistence.room.Room;
 
 import com.vincentganneau.swapi.model.api.SWApi;
 import com.vincentganneau.swapi.model.dao.PlanetDao;
@@ -40,7 +39,7 @@ import static org.mockito.Mockito.when;
 public class PlanetRepositoryTest {
 
     /**
-     * The rule that makes sure {@link Room} executes all the database operations instantly.
+     * The rule that forces Architecture Components to instantly execute any background operation on the calling thread.
      */
     @Rule
     public InstantTaskExecutorRule mInstantTaskExecutorRule = new InstantTaskExecutorRule();
