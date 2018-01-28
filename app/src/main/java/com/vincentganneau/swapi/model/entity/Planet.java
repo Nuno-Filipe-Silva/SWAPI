@@ -44,6 +44,7 @@ public class Planet {
      * @param name the name for the {@link Planet}.
      */
     public Planet(String name) {
+        this();
         setName(name);
     }
 

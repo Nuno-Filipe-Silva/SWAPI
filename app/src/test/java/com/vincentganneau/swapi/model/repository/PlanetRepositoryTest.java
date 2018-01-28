@@ -29,6 +29,7 @@ import retrofit2.Response;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 /**
@@ -89,5 +90,12 @@ public class PlanetRepositoryTest {
         verify(mPlanetDao).loadPlanets();
         verify(mPlanetDao).insertPlanets(planets);
         verify(mObserver).onChanged(planets);
+
+        // When
+        when(call.execute()).thenThrow(mock(IOException.class));
+        mPlanetRepository.fetchPlanets();
+
+        // Then
+        verifyNoMoreInteractions(mPlanetDao);
     }
 }
