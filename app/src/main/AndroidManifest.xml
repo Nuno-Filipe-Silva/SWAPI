@@ -23,6 +23,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.vincentganneau.swapi">
 
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- Application -->
     <application
         android:allowBackup="true"
@@ -31,6 +34,16 @@
         android:name=".SWApplication"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" />
+        android:theme="@style/AppTheme">
+
+        <!-- Activities -->
+        <activity android:name=".ui.activity.PlanetListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
 
 </manifest>

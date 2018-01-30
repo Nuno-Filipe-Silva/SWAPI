@@ -33,7 +33,7 @@ public class PlanetListViewModel extends ViewModel {
     }
 
     /**
-     * Exposes the {@link List} of {@link Planet} objects as an observable {@link LiveData} so the UI can observe it.
+     * Exposes the planets as an observable so the UI can observe it.
      * @return the {@link List} of {@link Planet} objects as an observable {@link LiveData}.
      */
     public LiveData<List<Planet>> getPlanets() {
