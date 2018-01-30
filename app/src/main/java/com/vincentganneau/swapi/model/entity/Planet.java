@@ -2,8 +2,11 @@ package com.vincentganneau.swapi.model.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.Objects;
 
@@ -31,35 +34,28 @@ public class Planet {
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = COLUMN_NAME)
+    @SerializedName("name")
     private String mName;
 
     // Constructors
     /**
-     * Constructs a new instance of {@link Planet}.
+     * Creates a new instance of {@link Planet}.
      */
     public Planet() { }
 
     /**
-     * Constructs a new instance of {@link Planet} with the given name.
-     * @param name the name for the {@link Planet}.
+     * Creates a new instance of {@link Planet} with the given name.
+     * @param name the name for the planet.
      */
+    @Ignore
     public Planet(String name) {
         this();
         setName(name);
     }
 
-    // Setters
-    /**
-     * Sets the name for this {@link Planet}.
-     * @param name the name for this {@link Planet}.
-     */
-    public void setName(String name) {
-        mName = name;
-    }
-
     // Getters
     /**
-     * Returns the name for this {@link Planet}.
+     * Returns the name for this planet.
      * @return the name for this {@link Planet}.
      */
     public String getName() {
@@ -81,5 +77,14 @@ public class Planet {
     @Override
     public int hashCode() {
         return Objects.hash(mName);
+    }
+
+    // Setters
+    /**
+     * Sets the name for this planet.
+     * @param name the name for this {@link Planet}.
+     */
+    public void setName(String name) {
+        mName = name;
     }
 }
