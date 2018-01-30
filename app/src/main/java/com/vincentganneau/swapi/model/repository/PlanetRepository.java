@@ -3,6 +3,7 @@ package com.vincentganneau.swapi.model.repository;
 import android.arch.lifecycle.LiveData;
 
 import com.vincentganneau.swapi.model.api.SWApi;
+import com.vincentganneau.swapi.model.api.SWApiResponse;
 import com.vincentganneau.swapi.model.dao.PlanetDao;
 import com.vincentganneau.swapi.model.entity.Planet;
 
@@ -14,7 +15,7 @@ import javax.inject.Inject;
 import retrofit2.Response;
 
 /**
- * Repository that handles operations on {@link Planet}s.
+ * Repository that handles operations on planets.
  * @author Vincent Ganneau
  */
 public class PlanetRepository {
@@ -52,9 +53,9 @@ public class PlanetRepository {
     public void fetchPlanets() {
         mExecutor.execute(() -> {
             try {
-                final Response<List<Planet>> response = mApi.getPlanets().execute();
+                final Response<SWApiResponse<Planet>> response = mApi.getPlanets().execute();
                 if (response.isSuccessful()) {
-                    mPlanetDao.insertPlanets(response.body());
+                    mPlanetDao.insertPlanets(response.body().getResults());
                 }
             } catch (Exception e) {
                 e.printStackTrace();

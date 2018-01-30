@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.Observer;
 
 import com.vincentganneau.swapi.model.api.SWApi;
+import com.vincentganneau.swapi.model.api.SWApiResponse;
 import com.vincentganneau.swapi.model.dao.PlanetDao;
 import com.vincentganneau.swapi.model.entity.Planet;
 
@@ -71,7 +72,7 @@ public class PlanetRepositoryTest {
     @Test
     public void testGetPlanets() throws IOException {
         // Given
-        final Call<List<Planet>> call = mock(Call.class);
+        final Call<SWApiResponse<Planet>> call = mock(Call.class);
         final MutableLiveData<List<Planet>> data = new MutableLiveData<>();
         final Planet venus = new Planet("Venus");
         final Planet mercury = new Planet("Mercury");
@@ -79,7 +80,7 @@ public class PlanetRepositoryTest {
 
         // When
         when(mApi.getPlanets()).thenReturn(call);
-        when(call.execute()).thenReturn(Response.error(HttpURLConnection.HTTP_INTERNAL_ERROR, mock(ResponseBody.class)), Response.success(planets));
+        when(call.execute()).thenReturn(Response.error(HttpURLConnection.HTTP_INTERNAL_ERROR, mock(ResponseBody.class)), Response.success(new SWApiResponse(planets)));
         when(mPlanetDao.loadPlanets()).thenReturn(data);
         mPlanetRepository.getPlanets().observeForever(mObserver);
         mPlanetRepository.fetchPlanets();
