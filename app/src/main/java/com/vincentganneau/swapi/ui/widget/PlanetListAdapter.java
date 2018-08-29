@@ -2,6 +2,7 @@ package com.vincentganneau.swapi.ui.widget;
 
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,14 +38,15 @@ public class PlanetListAdapter extends RecyclerView.Adapter<PlanetViewHolder> {
         return mPlanets != null ? mPlanets.size() : 0;
     }
 
+    @NonNull
     @Override
-    public PlanetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PlanetViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = mLayoutInflater.inflate(android.R.layout.simple_list_item_1, parent, false);
         return new PlanetViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(PlanetViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlanetViewHolder holder, int position) {
         final Planet planet = getPlanet(position);
         holder.nameTextView.setText(planet.getName());
     }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -33,9 +34,6 @@ public class PlanetListFragment extends Fragment {
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
-    // View model
-    private PlanetListViewModel mPlanetListViewModel;
-
     // Adapter
     private PlanetListAdapter mPlanetListAdapter;
 
@@ -47,12 +45,12 @@ public class PlanetListFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_planet_list, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         // Set views
@@ -67,8 +65,8 @@ public class PlanetListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         // Setup view model
-        mPlanetListViewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(PlanetListViewModel.class);
-        mPlanetListViewModel.getPlanets().observe(this, this::onPlanetsChanged);
+        final PlanetListViewModel planetListViewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(PlanetListViewModel.class);
+        planetListViewModel.getPlanets().observe(this, this::onPlanetsChanged);
     }
 
     /**
