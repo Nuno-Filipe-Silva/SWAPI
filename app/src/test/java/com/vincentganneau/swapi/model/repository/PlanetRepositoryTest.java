@@ -51,6 +51,9 @@ public class PlanetRepositoryTest {
     @Mock private PlanetDao mPlanetDao;
     private static final Executor mInstantExecutor = Runnable::run;
 
+    // Call
+    @Mock private Call<SWApiResponse<Planet>> mCall;
+
     // Observer
     @Mock private Observer<List<Planet>> mObserver;
 
@@ -72,15 +75,14 @@ public class PlanetRepositoryTest {
     @Test
     public void testGetPlanets() throws IOException {
         // Given
-        final Call<SWApiResponse<Planet>> call = mock(Call.class);
         final MutableLiveData<List<Planet>> data = new MutableLiveData<>();
         final Planet venus = new Planet("Venus");
         final Planet mercury = new Planet("Mercury");
         final List<Planet> planets = Arrays.asList(mercury, venus);
 
         // When
-        when(mApi.getPlanets()).thenReturn(call);
-        when(call.execute()).thenReturn(Response.error(HttpURLConnection.HTTP_INTERNAL_ERROR, mock(ResponseBody.class)), Response.success(new SWApiResponse(planets)));
+        when(mApi.getPlanets()).thenReturn(mCall);
+        when(mCall.execute()).thenReturn(Response.error(HttpURLConnection.HTTP_INTERNAL_ERROR, mock(ResponseBody.class)), Response.success(new SWApiResponse<>(planets)));
         when(mPlanetDao.loadPlanets()).thenReturn(data);
         mPlanetRepository.getPlanets().observeForever(mObserver);
         mPlanetRepository.fetchPlanets();
@@ -93,7 +95,7 @@ public class PlanetRepositoryTest {
         verify(mObserver).onChanged(planets);
 
         // When
-        when(call.execute()).thenThrow(mock(IOException.class));
+        when(mCall.execute()).thenThrow(mock(IOException.class));
         mPlanetRepository.fetchPlanets();
 
         // Then
