@@ -53,10 +53,14 @@ public class PlanetRepository {
     public void fetchPlanets() {
         mExecutor.execute(() -> {
             try {
-                final Response<SWApiResponse<Planet>> response = mApi.getPlanets().execute();
-                if (response.isSuccessful()) {
-                    mPlanetDao.insertPlanets(response.body().getResults());
-                }
+                int page = 0;
+                Response<SWApiResponse<Planet>> response;
+                do {
+                    response = mApi.getPlanets(++page).execute();
+                    if (response.isSuccessful()) {
+                        mPlanetDao.insertPlanets(response.body().getResults());
+                    }
+                } while (response.isSuccessful() && response.body().hasMoreResults());
             } catch (Exception e) {
                 e.printStackTrace();
             }
