@@ -25,7 +25,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 /**
- * Class that tests the {@link PlanetDao}.
+ * Class that tests the {@link PlanetDao} interface.
  * @author Vincent Ganneau
  */
 @RunWith(AndroidJUnit4.class)

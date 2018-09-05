@@ -81,7 +81,7 @@ public class PlanetRepositoryTest {
         final List<Planet> planets = Arrays.asList(mercury, venus);
 
         // When
-        when(mApi.getPlanets()).thenReturn(mCall);
+        when(mApi.getPlanets(1)).thenReturn(mCall);
         when(mCall.execute()).thenReturn(Response.error(HttpURLConnection.HTTP_INTERNAL_ERROR, mock(ResponseBody.class)), Response.success(new SWApiResponse<>(planets)));
         when(mPlanetDao.loadPlanets()).thenReturn(data);
         mPlanetRepository.getPlanets().observeForever(mObserver);
@@ -89,7 +89,7 @@ public class PlanetRepositoryTest {
         data.setValue(planets);
 
         // Then
-        verify(mApi, times(2)).getPlanets();
+        verify(mApi, times(2)).getPlanets(1);
         verify(mPlanetDao).loadPlanets();
         verify(mPlanetDao).insertPlanets(planets);
         verify(mObserver).onChanged(planets);

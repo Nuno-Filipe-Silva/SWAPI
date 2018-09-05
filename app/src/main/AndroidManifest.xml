@@ -44,6 +44,9 @@
             </intent-filter>
         </activity>
 
+        <!-- Testing activities -->
+        <activity android:name=".testing.SingleFragmentActivity" />
+
     </application>
 
 </manifest>

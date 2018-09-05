@@ -36,6 +36,6 @@ public interface PlanetDao {
      * Loads all the planets from the database.
      * @return the {@link List} of {@link Planet} objects as an observable {@link LiveData}
      */
-    @Query("SELECT * FROM " + Planet.TABLE_NAME + " ORDER BY " + Planet.COLUMN_NAME)
+    @Query("SELECT * FROM " + Planet.TABLE_NAME + " WHERE " + Planet.COLUMN_NAME + " NOT LIKE 'unknown' ORDER BY " + Planet.COLUMN_NAME)
     LiveData<List<Planet>> loadPlanets();
 }
