@@ -32,7 +32,7 @@ public class PlanetListFragment extends Fragment {
 
     // View model factory
     @Inject
-    ViewModelProvider.Factory viewModelFactory;
+    public ViewModelProvider.Factory viewModelFactory;
 
     // Adapter
     private PlanetListAdapter mPlanetListAdapter;

@@ -41,7 +41,7 @@ public class PlanetListFragmentTest {
     // Dependencies
     @Mock private PlanetListViewModel mPlanetListViewModel;
 
-    //
+    // Planets
     private MutableLiveData<List<Planet>> mPlanets = new MutableLiveData<>();
 
     // Fragment
@@ -58,8 +58,11 @@ public class PlanetListFragmentTest {
         activityRule.getActivity().setFragment(mFragment);
     }
 
+    /**
+     * Tests the {@link com.vincentganneau.swapi.ui.widget.PlanetListAdapter}.
+     */
     @Test
-    public void test() {
+    public void testAdapter() {
         // Given
         final Planet venus = new Planet("Venus");
         final Planet mercury = new Planet("Mercury");
