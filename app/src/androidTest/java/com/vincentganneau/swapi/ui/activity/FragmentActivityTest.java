@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 
 import com.vincentganneau.swapi.testing.SWTestApplication;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.mockito.MockitoAnnotations;
@@ -32,7 +33,7 @@ public abstract class FragmentActivityTest<T extends FragmentActivity> implement
     protected abstract Class<T> getActivityClass();
 
     /**
-     * Initializes mock objects.
+     * Initializes mock objects and registers activity lifecycle callbacks.
      */
     @Before
     public final void setUp() {
@@ -41,6 +42,15 @@ public abstract class FragmentActivityTest<T extends FragmentActivity> implement
         final SWTestApplication application = (SWTestApplication) InstrumentationRegistry.getTargetContext().getApplicationContext();
         application.registerActivityLifecycleCallbacks(this);
         activityRule.launchActivity(null);
+    }
+
+    /**
+     * Unregisters activity lifecycle callbacks.
+     */
+    @After
+    public final void tearDown() {
+        final SWTestApplication application = (SWTestApplication) InstrumentationRegistry.getTargetContext().getApplicationContext();
+        application.unregisterActivityLifecycleCallbacks(this);
     }
 
     /**

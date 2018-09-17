@@ -48,7 +48,7 @@ public class PlanetListFragmentTest {
     private PlanetListFragment mFragment = new PlanetListFragment();
 
     /**
-     * Initializes mock objects.
+     * Initializes mock objects and sets the fragment to be tested.
      */
     @Before
     public void setUp() {
