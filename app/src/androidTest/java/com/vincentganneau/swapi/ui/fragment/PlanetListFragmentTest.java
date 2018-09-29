@@ -37,16 +37,16 @@ public class PlanetListFragmentTest {
 
     // Rule
     @Rule
-    public ActivityTestRule<SingleFragmentActivity> activityRule = new ActivityTestRule<>(SingleFragmentActivity.class, true, true);
+    public final ActivityTestRule<SingleFragmentActivity> activityRule = new ActivityTestRule<>(SingleFragmentActivity.class, true, true);
 
     // Dependencies
     @Mock private PlanetListViewModel mPlanetListViewModel;
 
     // Planets
-    private MutableLiveData<List<Planet>> mPlanets = new MutableLiveData<>();
+    private final MutableLiveData<List<Planet>> mPlanets = new MutableLiveData<>();
 
     // Fragment
-    private PlanetListFragment mFragment = new PlanetListFragment();
+    private final PlanetListFragment mFragment = new PlanetListFragment();
 
     /**
      * Initializes mock objects and sets the fragment to be tested.

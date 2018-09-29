@@ -67,7 +67,7 @@ public class Planet {
         if (this == object) {
             return true;
         }
-        if (object == null || !(object instanceof Planet)) {
+        if (!(object instanceof Planet)) {
             return false;
         }
         final Planet planet = (Planet) object;

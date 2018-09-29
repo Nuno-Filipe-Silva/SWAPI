@@ -24,7 +24,7 @@ public abstract class FragmentActivityTest<T extends FragmentActivity> implement
 
     // Rule
     @Rule
-    public ActivityTestRule<T> activityRule = new ActivityTestRule<>(getActivityClass(), true, false);
+    public final ActivityTestRule<T> activityRule = new ActivityTestRule<>(getActivityClass(), true, false);
 
     /**
      * Returns the {@link FragmentActivity} subclass being tested.

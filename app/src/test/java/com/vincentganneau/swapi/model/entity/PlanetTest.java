@@ -7,8 +7,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertNotEquals;
 
 /**
@@ -26,21 +24,21 @@ public class PlanetTest {
         final Planet one = TestUtils.PLANETS[0];
 
         // Assert equality when comparing to same object
-        assertTrue(one.equals(one));
+        assertEquals(one, one);
 
         // Assert inequality when comparing to null object
-        assertFalse(one.equals(null));
+        assertNotEquals(one, null);
 
         // Assert inequality when comparing to an object of different class
-        assertFalse(one.equals(""));
+        assertNotEquals(one, "");
 
         // Assert equality when all properties match
         final Planet two = new Planet(one.getName());
-        assertTrue(one.equals(two));
+        assertEquals(one, two);
 
         // Assert inequality when name does not match
         two.setName(TestUtils.PLANETS[1].getName());
-        assertFalse(one.equals(two));
+        assertNotEquals(one, two);
     }
 
     /**

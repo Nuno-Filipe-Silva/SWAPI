@@ -65,7 +65,7 @@ public class PlanetListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         // Setup view model
-        final PlanetListViewModel planetListViewModel = ViewModelProviders.of(getActivity(), viewModelFactory).get(PlanetListViewModel.class);
+        final PlanetListViewModel planetListViewModel = ViewModelProviders.of(requireActivity(), viewModelFactory).get(PlanetListViewModel.class);
         planetListViewModel.getPlanets().observe(this, this::onPlanetsChanged);
     }
 

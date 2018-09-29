@@ -3,10 +3,7 @@ package com.vincentganneau.swapi.testing;
 
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
-
-/**
- * Creates a one off view model factory for the given view model instance.
- */
+import android.support.annotation.NonNull;
 
 /**
  * Helper class that creates {@link ViewModelProvider.Factory} instances for tests.
@@ -25,8 +22,9 @@ public class ViewModelUtils {
     public static <T extends ViewModel> ViewModelProvider.Factory createFor(T model) {
         return new ViewModelProvider.Factory() {
 
+            @NonNull
             @Override
-            public <T extends ViewModel> T create(Class<T> modelClass) {
+            public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
                 if (modelClass.isAssignableFrom(model.getClass())) {
                     return (T) model;
                 }

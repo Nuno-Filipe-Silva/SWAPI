@@ -22,6 +22,6 @@ public class TestUtils {
             new Planet("Jupiter"),
             new Planet("Saturn"),
             new Planet("Uranus"),
-            new Planet("Netptune")
+            new Planet("Neptune")
     };
 }
