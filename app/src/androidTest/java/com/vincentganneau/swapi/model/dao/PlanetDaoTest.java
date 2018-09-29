@@ -8,6 +8,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.vincentganneau.swapi.model.database.SWDatabase;
 import com.vincentganneau.swapi.model.entity.Planet;
+import com.vincentganneau.swapi.testing.TestUtils;
 
 import org.junit.After;
 import org.junit.Before;
@@ -60,19 +61,17 @@ public class PlanetDaoTest {
     @Test
     public void testInsertAndLoadPlanets() {
         // Given
-        final Planet venus = new Planet("Venus");
-        final Planet mercury = new Planet("Mercury");
-        final List<Planet> planets = Arrays.asList(mercury, venus);
+        final List<Planet> planets = Arrays.asList(TestUtils.PLANETS[0], TestUtils.PLANETS[1]);
         mDatabase.planetDao().loadPlanets().observeForever(mObserver);
 
         // When
-        mDatabase.planetDao().insertPlanet(venus);
-        mDatabase.planetDao().insertPlanet(mercury);
+        mDatabase.planetDao().insertPlanet(TestUtils.PLANETS[0]);
+        mDatabase.planetDao().insertPlanet(TestUtils.PLANETS[1]);
         mDatabase.planetDao().insertPlanets(planets);
 
         // Then
         verify(mObserver, times(1)).onChanged(Collections.emptyList());
-        verify(mObserver, times(1)).onChanged(Collections.singletonList(venus));
+        verify(mObserver, times(1)).onChanged(Collections.singletonList(TestUtils.PLANETS[0]));
         verify(mObserver, times(2)).onChanged(planets);
     }
 

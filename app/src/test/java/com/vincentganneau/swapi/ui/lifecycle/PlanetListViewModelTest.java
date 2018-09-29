@@ -6,6 +6,7 @@ import android.arch.lifecycle.Observer;
 
 import com.vincentganneau.swapi.model.entity.Planet;
 import com.vincentganneau.swapi.model.repository.PlanetRepository;
+import com.vincentganneau.swapi.testing.TestUtils;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -59,14 +60,12 @@ public class PlanetListViewModelTest {
     public void testGetPlanets() {
         // Given
         final MutableLiveData<List<Planet>> data = new MutableLiveData<>();
-        final Planet venus = new Planet("Venus");
-        final Planet mercury = new Planet("Mercury");
-        final List<Planet> planets = Arrays.asList(mercury, venus);
+        final List<Planet> planets = Arrays.asList(TestUtils.PLANETS[0], TestUtils.PLANETS[1]);
 
         // When
         when(mPlanetRepository.getPlanets()).thenReturn(data);
         mPlanetListViewModel.getPlanets().observeForever(mObserver);
-        data.setValue(Arrays.asList(mercury, venus));
+        data.setValue(Arrays.asList(TestUtils.PLANETS[0], TestUtils.PLANETS[1]));
 
         // Then
         verify(mObserver).onChanged(planets);

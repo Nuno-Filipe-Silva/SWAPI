@@ -1,5 +1,7 @@
 package com.vincentganneau.swapi.model.entity;
 
+import com.vincentganneau.swapi.testing.TestUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -21,7 +23,7 @@ public class PlanetTest {
      */
     @Test
     public void testEquals() {
-        final Planet one = new Planet("Mercury");
+        final Planet one = TestUtils.PLANETS[0];
 
         // Assert equality when comparing to same object
         assertTrue(one.equals(one));
@@ -37,7 +39,7 @@ public class PlanetTest {
         assertTrue(one.equals(two));
 
         // Assert inequality when name does not match
-        two.setName("Venus");
+        two.setName(TestUtils.PLANETS[1].getName());
         assertFalse(one.equals(two));
     }
 
@@ -46,7 +48,7 @@ public class PlanetTest {
      */
     @Test
     public void testHashCode() {
-        final Planet one = new Planet("Mercury");
+        final Planet one = TestUtils.PLANETS[0];
 
         // Assert equality when comparing to same object
         assertEquals(one.hashCode(), one.hashCode());
@@ -56,7 +58,7 @@ public class PlanetTest {
         assertEquals(one.hashCode(), two.hashCode());
 
         // Assert inequality when name does not match
-        two.setName("Venus");
+        two.setName(TestUtils.PLANETS[1].getName());
         assertNotEquals(one.hashCode(), two.hashCode());
     }
 }

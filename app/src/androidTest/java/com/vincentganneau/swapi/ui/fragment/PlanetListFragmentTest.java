@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.vincentganneau.swapi.model.entity.Planet;
 import com.vincentganneau.swapi.testing.SingleFragmentActivity;
+import com.vincentganneau.swapi.testing.TestUtils;
 import com.vincentganneau.swapi.testing.ViewModelUtils;
 import com.vincentganneau.swapi.ui.lifecycle.PlanetListViewModel;
 
@@ -64,15 +65,13 @@ public class PlanetListFragmentTest {
     @Test
     public void testAdapter() {
         // Given
-        final Planet venus = new Planet("Venus");
-        final Planet mercury = new Planet("Mercury");
-        final List<Planet> planets = Arrays.asList(mercury, venus);
+        final List<Planet> planets = Arrays.asList(TestUtils.PLANETS[0], TestUtils.PLANETS[1]);
 
         // When
         mPlanets.postValue(planets);
 
         // Then
-        onView(allOf(withText("Venus"), withId(android.R.id.text1))).check(matches(isDisplayed()));
-        onView(allOf(withText("Mercury"), withId(android.R.id.text1))).check(matches(isDisplayed()));
+        onView(allOf(withText(TestUtils.PLANETS[0].getName()), withId(android.R.id.text1))).check(matches(isDisplayed()));
+        onView(allOf(withText(TestUtils.PLANETS[1].getName()), withId(android.R.id.text1))).check(matches(isDisplayed()));
     }
 }
