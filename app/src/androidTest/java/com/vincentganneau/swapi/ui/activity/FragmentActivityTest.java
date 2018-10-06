@@ -3,6 +3,7 @@ package com.vincentganneau.swapi.ui.activity;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.rule.ActivityTestRule;
 import android.support.v4.app.Fragment;
@@ -65,7 +66,7 @@ public abstract class FragmentActivityTest<T extends FragmentActivity> implement
         ((FragmentActivity) activity).getSupportFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
 
             @Override
-            public void onFragmentCreated(FragmentManager fm, Fragment f, Bundle savedInstanceState) {
+            public void onFragmentCreated(@NonNull FragmentManager fm, @NonNull Fragment f, Bundle savedInstanceState) {
                 FragmentActivityTest.this.onFragmentCreated(f);
             }
         }, true);
