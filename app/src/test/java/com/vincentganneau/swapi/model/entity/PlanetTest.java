@@ -6,8 +6,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Class that tests the {@link Planet} entity.
@@ -58,5 +60,22 @@ public class PlanetTest {
         // Assert inequality when name does not match
         two.setName(TestUtils.PLANETS[1].getName());
         assertNotEquals(one.hashCode(), two.hashCode());
+    }
+
+    /**
+     * Tests the {@link Planet#DIFF_CALLBACK}.
+     */
+    @Test
+    public void testDiffCallback() {
+        final Planet one = TestUtils.PLANETS[0];
+        final Planet two = TestUtils.PLANETS[1];
+
+        // Assert items and contents are the same when comparing to same object
+        assertTrue(Planet.DIFF_CALLBACK.areItemsTheSame(one, one));
+        assertTrue(Planet.DIFF_CALLBACK.areContentsTheSame(one, one));
+
+        // Assert items and contents are different when name does not match
+        assertFalse(Planet.DIFF_CALLBACK.areItemsTheSame(one, two));
+        assertFalse(Planet.DIFF_CALLBACK.areContentsTheSame(one, two));
     }
 }
